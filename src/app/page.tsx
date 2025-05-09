@@ -4,7 +4,9 @@ export const dynamic = "force-dynamic"; // 매 요청마다 새로 SSR
 export const revalidate = 0;
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL;
-
+if (!API_BASE){
+  throw new Error("process.env.NEXT_PUBLIC_API_BASE_URL");
+}
 
 async function fetchTables(): Promise<Table[]> {
   const url = `${API_BASE}/tables`
