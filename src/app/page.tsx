@@ -7,7 +7,8 @@ const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 
 async function fetchTables(): Promise<Table[]> {
-  const res = await fetch('${API_BASE}/tables', {
+  const url = '${API_BASE}/tables'
+  const res = await fetch(url, {
     cache: "no-store",
   });
   return res.json();
