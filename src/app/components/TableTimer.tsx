@@ -12,6 +12,8 @@ type Props = {
   initialTables: Table[];
 };
 
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL;
+
 export default function TableTimer({ initialTables }: Props) {
   // ① 서버에서 받아온 초기 상태
   const [tables, setTables] = useState<Table[]>(initialTables);
@@ -25,7 +27,7 @@ export default function TableTimer({ initialTables }: Props) {
 
   // ③ API 호출 후 상태 업데이트
   const handleEnter = async (id: number) => {
-    await fetch(`http://localhost:8000/tables/${id}/enter`, {
+    await fetch(`${API_BASE}/tables/${id}/enter`, {
       method: "POST",
     });
     setTables((prev) =>
@@ -38,7 +40,7 @@ export default function TableTimer({ initialTables }: Props) {
   };
 
   const handleReset = async (id: number) => {
-    await fetch(`http://localhost:8000/tables/${id}/reset`, {
+    await fetch(`${API_BASE}/tables/${id}/reset`, {
       method: "POST",
     });
     setTables((prev) =>
